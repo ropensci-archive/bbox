@@ -14,7 +14,22 @@ after_success:
 addons:
   apt:
     packages:
+      - libudunits2-dev
       - libv8-dev
+      - libprotobuf-dev
+      - libprotoc-dev
+      - protobuf-compiler
+      - valgrind
+
+env:
+   global:
+     - R_LIBS="https://cran.rstudio.com"
+     - R_BUILD_ARGS="--no-build-vignettes --no-manual"
+     - R_CHECK_ARGS="--no-build-vignettes --no-manual --as-cran"
+     - BOOTSTRAP_LATEX=""
+
+compiler:
+  - clang
 
 notifications:
   email:

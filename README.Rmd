@@ -29,7 +29,7 @@ Various interfaces:
 ## Installation
 
 ```{r eval=FALSE}
-remotes::("ropensci/bbox")
+remotes::install_github("ropensci/bbox")
 ```
 
 ```{r}

@@ -19,7 +19,7 @@ Various interfaces:
 
 * Input long/lat and value to make a polyogn, then get the bbox, using either
     * `sp`/`rgeos`, or
-    * GeoJSON via `lawn`
+    * GeoJSON via `lawn` (to be replaced with `geoops` once `geoops::geo_buffer`)
 * Input Spatial objects (`sp` package) and spit out the bbox
 * Input GeoJSON data and spit out the bbox
 * Input Well Know Text data and spit out the bbox
@@ -44,10 +44,20 @@ lonlat2bbox(lon=-120, lat=45, width=10^4)
 
 ## get bbox from any spatial object
 
+sp/rgeos class spatial objects
+
 ```{r}
-library(sf)
-nc <- st_read(system.file("shape/nc.shp", package="sf"))
-b_box(nc)
+library(sp)
+x <- GridTopology(c(0,0), c(1,1), c(5,5))
+sp_grid <- SpatialGrid(x)
+b_box(sp_grid)
+```
+
+WKT
+
+```{r}
+wkt_poly <- "POLYGON ((100.001 0.001, 101.1235 0.0010, 101.001 1.001, 100.001 0.001))"
+b_box(wkt_poly)
 ```
 
 ## Meta

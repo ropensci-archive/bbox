@@ -12,7 +12,7 @@ Various interfaces:
 
 * Input long/lat and value to make a polyogn, then get the bbox, using either
     * `sp`/`rgeos`, or
-    * GeoJSON via `lawn`
+    * GeoJSON via `lawn` (to be replaced with `geoops` once `geoops::geo_buffer`)
 * Input Spatial objects (`sp` package) and spit out the bbox
 * Input GeoJSON data and spit out the bbox
 * Input Well Know Text data and spit out the bbox
@@ -41,19 +41,24 @@ lonlat2bbox(lon=-120, lat=45, width=10^4)
 
 ## get bbox from any spatial object
 
+sp/rgeos class spatial objects
+
 
 ```r
-library(sf)
-nc <- st_read(system.file("shape/nc.shp", package="sf"))
-#> Reading layer `nc' from data source `/Library/Frameworks/R.framework/Versions/3.4/Resources/library/sf/shape/nc.shp' using driver `ESRI Shapefile'
-#> Simple feature collection with 100 features and 14 fields
-#> geometry type:  MULTIPOLYGON
-#> dimension:      XY
-#> bbox:           xmin: -84.32385 ymin: 33.88199 xmax: -75.45698 ymax: 36.58965
-#> epsg (SRID):    4267
-#> proj4string:    +proj=longlat +datum=NAD27 +no_defs
-b_box(nc)
-#> [1] -84.32385  33.88199 -75.45698  36.58965
+library(sp)
+x <- GridTopology(c(0,0), c(1,1), c(5,5))
+sp_grid <- SpatialGrid(x)
+b_box(sp_grid)
+#> [1] -0.5 -0.5  4.5  4.5
+```
+
+WKT
+
+
+```r
+wkt_poly <- "POLYGON ((100.001 0.001, 101.1235 0.0010, 101.001 1.001, 100.001 0.001))"
+b_box(wkt_poly)
+#> [1] 100.0010   0.0010 101.1235   1.0010
 ```
 
 ## Meta

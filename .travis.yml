@@ -20,6 +20,7 @@ addons:
       - libprotoc-dev
       - protobuf-compiler
       - valgrind
+      - libjq-dev
 
 env:
    global:

@@ -1,0 +1,24 @@
+language: r
+sudo: false
+cache: packages
+dist: trusty
+
+r_github_packages:
+  - jimhester/covr
+
+r_check_args: "--as-cran --run-dontrun"
+
+after_success:
+  - Rscript -e 'covr::codecov()'
+
+addons:
+  apt:
+    packages:
+      - libv8-dev
+
+notifications:
+  email:
+    on_success: never
+    on_failure: never
+  slack:
+    secure: KudAMnqi7D6dy1BruMF9tkT2PTUXa8VSuQo8ECk5M6gz6L7o6tEmzPgrzqLC9xzgc4mm80opMMdNGShTHZZdd1oWw9yIOFZpQ10O/kaLyb1LgFwV01yZP1dt9ZAxRvfm9Ur2wl8XS+cRr6PR7iJX733iBhQ+qUGDTltFm/O2q8U=

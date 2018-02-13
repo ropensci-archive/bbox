@@ -1,0 +1,59 @@
+bbox
+====
+
+```{r echo=FALSE}
+knitr::opts_chunk$set(
+  comment = "#>",
+  collapse = TRUE,
+  warning = FALSE,
+  message = FALSE
+)
+```
+
+[![Build Status](https://travis-ci.org/ropensci/bbox.svg?branch=master)](https://travis-ci.org/ropensci/bbox)
+[![codecov](https://codecov.io/gh/ropensci/bbox/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/bbox)
+
+`bbox` gets bounding boxes
+
+Various interfaces:
+
+* Input long/lat and value to make a polyogn, then get the bbox, using either
+    * `sp`/`rgeos`, or
+    * GeoJSON via `lawn`
+* Input Spatial objects (`sp` package) and spit out the bbox
+* Input GeoJSON data and spit out the bbox
+* Input Well Know Text data and spit out the bbox
+* Input Simple Features (`sf` package) data and spit out the bbox
+
+
+## Installation
+
+```{r eval=FALSE}
+remotes::("ropensci/bbox")
+```
+
+```{r}
+library("bbox")
+```
+
+## lon/lat to bbox
+
+```{r}
+lonlat2bbox(lon=-120, lat=45, width=10^4)
+```
+
+## get bbox from any spatial object
+
+```{r}
+library(sf)
+nc <- st_read(system.file("shape/nc.shp", package="sf"))
+b_box(nc)
+```
+
+## Meta
+
+* Please [report any issues or bugs](https://github.com/ropensci/bbox/issues).
+* License: MIT
+* Get citation information for `bbox` in R doing `citation(package = 'bbox')`
+* Please note that this project is released with a [Contributor Code of Conduct](CODE_OF_CONDUCT.md).
+By participating in this project you agree to abide by its terms.

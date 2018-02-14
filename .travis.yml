@@ -13,6 +13,8 @@ after_success:
 
 addons:
   apt:
+    sources:
+      - sourceline: 'ppa:opencpu/jq'
     packages:
       - libudunits2-dev
       - libv8-dev

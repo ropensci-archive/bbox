@@ -16,7 +16,8 @@ Suggests:
     geojson,
     sp,
     rgeos,
-    sf
+    sf,
+    rgdal
 RoxygenNote: 6.0.1
 X-schema.org-applicationCategory: Geospatial
 X-schema.org-keywords: geospatial, GeoJSON, WKT, spatial, bounding box

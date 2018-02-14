@@ -24,6 +24,7 @@ lonlat2bbox <- function(lon, lat, width = NULL, dist = NULL,
   if (method == "sp_rgeos") {
     check4pkg("sp")
     check4pkg("rgeos")
+    check4pkg("rgdal")
     pt <- sp::SpatialPoints(sp::coordinates(list(x = lon, y = lat)), 
       sp::CRS("+proj=longlat +datum=WGS84"))
     ## transfrom to web mercator becuase geos needs project coords

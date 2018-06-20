@@ -2,7 +2,7 @@ bbox
 ====
 
 
-
+[![Project Status: WIP – Initial development is in progress, but there has not yet been a stable, usable release suitable for the public.](http://www.repostatus.org/badges/latest/wip.svg)](http://www.repostatus.org/#wip)
 [![Build Status](https://travis-ci.org/ropensci/bbox.svg?branch=master)](https://travis-ci.org/ropensci/bbox)
 [![codecov](https://codecov.io/gh/ropensci/bbox/branch/master/graph/badge.svg)](https://codecov.io/gh/ropensci/bbox)
 
@@ -60,6 +60,24 @@ wkt_poly <- "POLYGON ((100.001 0.001, 101.1235 0.0010, 101.001 1.001, 100.001 0.
 b_box(wkt_poly)
 #> [1] 100.0010   0.0010 101.1235   1.0010
 ```
+
+## visualize bbox'es
+
+
+```r
+library(leaflet)
+viz_bbox <- function(map, x) addRectangles(map, x[1], x[2], x[3], x[4])
+leaflet() %>% 
+    addTiles() %>% 
+    viz_bbox(lonlat2bbox(lon=-120, lat=45, width=10)) %>% 
+    viz_bbox(lonlat2bbox(-120, 45, 100)) %>%         
+    viz_bbox(lonlat2bbox(-120, 45, 1000)) %>% 
+    viz_bbox(lonlat2bbox(-120, 45, 10^4)) %>% 
+    viz_bbox(lonlat2bbox(-120, 45, 10^5)) %>% 
+    viz_bbox(lonlat2bbox(-120, 45, 10^6))
+```
+
+![map](tools/map.png)
 
 ## Meta
 

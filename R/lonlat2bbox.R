@@ -1,10 +1,11 @@
-#' Bounding box with sp spatial objects
+#' Bounding box from lon and lat values
 #' 
 #' @export
 #' @param lon (numeric) longitude
 #' @param lat (numeric) latitude
 #' @param width (numeric) width, passed on to [rgeos::gBuffer()], see it's 
-#' docs for more info
+#' docs for more info. units are metric, so 10 is 10 m, 1000 is 1000 m, 
+#' etc.
 #' @param dist (numeric) distance. passed on to [lawn::lawn_buffer()]
 #' @param units (character) units. passed on to [lawn::lawn_buffer()]. 
 #' Default: kilometers
@@ -13,11 +14,14 @@
 #' @param ... additional parameters passed on to [rgeos::gBuffer()]
 #' @return bounding box numeric values in the order `[minX, minY, maxX, maxY]`
 #' @examples
+#' # 10m
 #' lonlat2bbox(lon=-120, lat=45, width=10)
+#' # 100m
 #' lonlat2bbox(-120, 45, 100)
+#' # 1000m, or 1 km
 #' lonlat2bbox(-120, 45, 1000)
-#' lonlat2bbox(-120, 45, 10^3)
-#' lonlat2bbox(-120, 45, 10^9)
+#' # 10 km
+#' lonlat2bbox(-120, 45, 10^4)
 lonlat2bbox <- function(lon, lat, width = NULL, dist = NULL, 
   units = "kilometers", method = "sp_rgeos", ...) {
 

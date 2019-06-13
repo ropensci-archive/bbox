@@ -13,7 +13,7 @@ after_success:
 addons:
   apt:
     sources:
-      - sourceline: 'ppa:jeroen/jq'
+      - sourceline: 'ppa:cran/jq'
       - sourceline: 'ppa:ubuntugis/ppa'
     packages:
     - libudunits2-dev
